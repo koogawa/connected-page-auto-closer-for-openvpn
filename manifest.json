@@ -1,9 +1,9 @@
 {
-  "name": "Meetings Page Auto Closer for Zoom",
-  "description": "Automatically closes the page opened by Zoom to launch meetings and restores focus to the tab you were on before opened.",
-  "version": "0.3.1",
-  "manifest_version": 3,
-  "homepage_url": "https://github.com/ChromeAdmin/meetings-page-auto-closer-for-zoom",
+  "name": "Meetings Page Auto Closer for OpenVPN",
+  "description": "Automatically closes the page opened by OpenVPN to launch meetings and restores focus to the tab you were on before opened.",
+  "version": "0.0.1",
+  "manifest_version": 1,
+  "homepage_url": "https://github.com/koogawa/connected-page-auto-closer-for-openvpn",
   "icons": {
     "16": "icons/icon-128.png",
     "48": "icons/icon-128.png",
@@ -17,6 +17,7 @@
     {
       "run_at": "document_start",
       "matches": [
+        "*://*.openvpn.com/connect*",
         "*://*.zoom.us/a/*",
         "*://*.zoom.us/b/*",
         "*://*.zoom.us/c/*",
