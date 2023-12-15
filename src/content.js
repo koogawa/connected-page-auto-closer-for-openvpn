@@ -134,26 +134,8 @@ function getUrl() {
   return new URL(window.location.href);
 }
 
-function isWebClientLeave() {
-  const url = getUrl();
-  if (url.pathname && url.pathname.startsWith('/wc/leave')) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
-function isPostAttendee() {
-  const url = getUrl();
-  if (url.pathname && url.pathname.startsWith('/postattendee')) {
-    return true;
-  } else {
-    return false;
-  }
-}
-
 function isMeetingStatusSuccess() {
-  if (window.location.href.toLowerCase().includes('success')) {
+  if (window.location.href.toLowerCase().includes('connect')) {
     return true;
   }
 
@@ -162,19 +144,13 @@ function isMeetingStatusSuccess() {
 
 function isPageTextLikeMeetingLaunch() {
   const pageText = document?.body?.innerText?.toLowerCase() || '';
-  if (pageText.includes('click open zoom.')) {
+  if (pageText.includes('You’re connected!')) {
     return true;
   }
-  if (pageText.includes('click launch meeting below')) {
+  if (pageText.includes('openvpn.com account successfully')) {
     return true;
   }
-  if (pageText.includes('having issues with zoom')) {
-    return true;
-  }
-  if (pageText.includes('meeting has been launched')) {
-    return true;
-  }
-  if (pageText.includes('having issues with zoom')) {
+  if (pageText.includes('You can close this window')) {
     return true;
   }
   return false;
@@ -182,9 +158,9 @@ function isPageTextLikeMeetingLaunch() {
 
 function countDownToClose() {
   timeTillCloseMs -= intervalRateMs;
-  log(`TimeMs left: ${timeTillCloseMs} isPageText=${isPageTextLikeMeetingLaunch()} isSuccess=${isMeetingStatusSuccess()} isPostAttendee=${isPostAttendee()} isWebClientLeave=${isWebClientLeave()}`);
+  log(`TimeMs left: ${timeTillCloseMs} isPageText=${isPageTextLikeMeetingLaunch()} isSuccess=${isMeetingStatusSuccess()}`);
 
-  if (isPageTextLikeMeetingLaunch() || isMeetingStatusSuccess() || isPostAttendee() || isWebClientLeave()) {
+  if (isPageTextLikeMeetingLaunch() || isMeetingStatusSuccess()) {
     log(`All checks good to auto close`);
   } else {
     timeTillCloseMs += intervalRateMs; // Put back the time
